@@ -2,6 +2,7 @@ const grid = document.querySelector('.grid');
 const spanPlayer = document.querySelector('.player');
 const timer = document.querySelector('.timer');
 
+
 const numeros = [
     'zero',
     'um',
@@ -30,7 +31,7 @@ const checkEndGame = () => {
 
     if (disabledCards.length === 20) {
         clearInterval(this.loop);
-        alert(`Parabéns, ${spanPlayer.innerHTML}! Seu tempo foi: ${timer.innerHTML}`);
+        alert(`Parabéns, ${spanPlayer.innerHTML}! Seu tempo foi: ${timer.innerHTML} segundos`);
     }
 }
 
@@ -103,6 +104,8 @@ const createCard = (numeros) => {
     return card;
 
 }
+
+
 
 const loadGame = () => {
     const duplicateNumeros = [...numeros, ...numeros];

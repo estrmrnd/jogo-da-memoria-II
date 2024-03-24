@@ -25,6 +25,11 @@ header{
 
 }
 
+#repetir{
+    display: flex;
+    justify-content: center;
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
