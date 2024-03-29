@@ -2,6 +2,7 @@ const grid = document.querySelector('.grid');
 const spanPlayer = document.querySelector('.player');
 const timer = document.querySelector('.timer');
 
+const audio = new Audio('../assents/musica-da-memoria.mp3')
 
 const numeros = [
     'zero',
@@ -16,6 +17,8 @@ const numeros = [
     'nove'
 
 ]
+
+audio.play();
 
 const createElement = (tag, className) => {
     const element = document.createElement(tag);
