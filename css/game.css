@@ -13,15 +13,16 @@ main {
 header{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+
     width: 100%;
     max-width: 800px;
     padding: 30px;
     margin: 0 0 30px;
     border-radius: 5px;
-    background-color: #FFE382;
+    background-color: #ff5a0f;
     font-size: 1.2em;
-    color: #333;
+    color: #FFF;
 
 }
 
@@ -65,10 +66,14 @@ header{
     transform: rotateY(180deg);
 }
 
-.back{
+.back1{
+    background-image: url('../imagens/costas1.jpg');
+    backface-visibility: hidden;
+}
+
+.back2{
     background-image: url('../imagens/costas2.jpg');
     backface-visibility: hidden;
-   
 }
 
 .reveal-card{
