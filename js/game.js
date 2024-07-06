@@ -5,7 +5,6 @@ const timer = document.querySelector('.timer');
 const audio = new Audio('../assents/musica-da-memoria.mp3')
 
 const numeros = [
-    'zero',
     'um',
     'dois',
     'tres',
@@ -14,7 +13,8 @@ const numeros = [
     'seis',
     'sete',
     'oito',
-    'nove'
+    'nove',
+    'dez'
 
 ]
 
@@ -89,11 +89,11 @@ if (firstCard === '') {
     }
 }
 
-const createCard = (numeros) => {
+const createCard = (numeros, posicao) => {
 
     const card = createElement('div' , 'card');
     const front = createElement('div' , 'face front');
-    const back = createElement('div' , 'face back');
+    const back = createElement('div' , `face back${posicao}`);
 
     front.style.backgroundImage = `url('../imagens/${numeros}.jpg')`;
 
@@ -115,9 +115,17 @@ const loadGame = () => {
 
     const shuffledArray = duplicateNumeros.sort(() => Math.random() - 0.5);
 
+    let index = 0
     shuffledArray.forEach((numeros) => {
-        const card = createCard(numeros);
+        index++
+        console.log(index)
+
+        const card = createCard(numeros, index);
         grid.appendChild(card);
+
+        if (index == 2 ) {
+            index = 0
+        }
     });
 }
 
@@ -132,7 +140,6 @@ const startTimer = () => {
 
 window.onload = () => {
 
-    spanPlayer.innerHTML = localStorage.getItem('player');
     
     startTimer();
 
