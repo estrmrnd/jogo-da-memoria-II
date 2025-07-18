@@ -129,8 +129,8 @@ header {
 }
 
 .modal-content button {
-  background-color: #007bff;
-  color: white;
+  /* background-color: #007bff; */
+  color: black;
   border: none;
   border-radius: 6px;
   transition: background-color 0.3s ease, transform 0.1s ease;
@@ -138,7 +138,7 @@ header {
 
 /* Hover: quando o mouse está sobre o botão */
 .modal-content button:hover {
-  background-color: #0056b3;
+  background-color: #a0a0a0;
 }
 
 /* Active: quando o botão está sendo pressionado */
@@ -147,15 +147,17 @@ header {
 }
 
 .teclado-virtual {
+  position: relative;
   margin-top: 20px;
   background: #f1f1f1;
   padding: 10px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  border-top: 2px solid #ccc;
-  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #ccc;
+  border-radius: 10px;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .teclas {
