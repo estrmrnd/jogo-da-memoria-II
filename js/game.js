@@ -12,12 +12,13 @@ const createElement = (tag, className) => {
     const element = document.createElement(tag);
     element.className = className;
     return element;
-}
+};
 
 let firstCard = '';
 let secondCard = '';
 let segundosDecorridos = 0;
 let loop = null;
+const LIMITE_TEMPO = 180; // 3 minutos
 
 const formatarTempo = (segundos) => {
     const minutos = Math.floor(segundos / 60);
@@ -27,10 +28,17 @@ const formatarTempo = (segundos) => {
 
 const checkEndGame = () => {
     const disabledCards = document.querySelectorAll('.disabled-card');
-
-    if (disabledCards.length === 20) {
+    if (disabledCards.length === 28) { // 14 pares = 28 cartas
         clearInterval(loop);
-        alert(`Parabéns, ${spanPlayer.innerHTML}! Seu tempo foi: ${timer.innerHTML}`);
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Parabéns!',
+            text: `Seu tempo foi de ${formatarTempo(segundosDecorridos)}minutos.`,
+            confirmButtonText: 'OK'
+        }).then(() => {
+            resetarJogo();
+        });
     }
 };
 
@@ -41,16 +49,13 @@ const checkCards = () => {
     if (firstNumeros === secondNumeros) {
         firstCard.firstChild.classList.add('disabled-card');
         secondCard.firstChild.classList.add('disabled-card');
-
         firstCard = '';
         secondCard = '';
-
         checkEndGame();
     } else {
         setTimeout(() => {
             firstCard.classList.remove('reveal-card');
             secondCard.classList.remove('reveal-card');
-
             firstCard = '';
             secondCard = '';
         }, 500);
@@ -66,7 +71,6 @@ const revealCard = ({ target }) => {
     } else if (secondCard === '') {
         target.parentNode.classList.add('reveal-card');
         secondCard = target.parentNode;
-
         checkCards();
     }
 };
@@ -96,7 +100,6 @@ const loadGame = () => {
         index++;
         const card = createCard(numeros, index);
         grid.appendChild(card);
-
         if (index == 2) index = 0;
     });
 };
@@ -104,11 +107,24 @@ const loadGame = () => {
 const startTimer = () => {
     segundosDecorridos = 0;
     timer.innerHTML = formatarTempo(segundosDecorridos);
-
     clearInterval(loop);
+
     loop = setInterval(() => {
         segundosDecorridos++;
         timer.innerHTML = formatarTempo(segundosDecorridos);
+
+        if (segundosDecorridos >= LIMITE_TEMPO) {
+            clearInterval(loop);
+
+            Swal.fire({
+                icon: 'warning',
+                title: 'Tempo esgotado!',
+                text: 'Vamos começar novamente.',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                resetarJogo();
+            });
+        }
     }, 1000);
 };
 
@@ -120,26 +136,27 @@ function resetarJogo() {
     firstCard = '';
     secondCard = '';
     grid.innerHTML = '';
-
-    // Recarrega as cartas (mas não começa o timer ainda)
     loadGame();
 
-    // Mostra novamente o modal de cadastro
     const modal = document.getElementById('modalCadastro');
-    if (modal) {
-        modal.style.display = 'flex';
-    }
+    if (modal) modal.style.display = 'flex';
+
+    // Reseta o formulário e nome do jogador
+    const form = document.getElementById('formCadastro');
+    if (form) form.reset();
+    if (spanPlayer) spanPlayer.textContent = '';
 }
 
-
-document.getElementById('repetir').addEventListener('click', resetarJogo);
+document.getElementById('repetir').addEventListener('click', () => {
+    resetarJogo();
+});
 
 window.onload = () => {
     loadGame();
-    // Timer só inicia após envio do formulário
+    // Timer inicia só após o envio do formulário
 };
 
-// ---------------------- TECLADO VIRTUAL ----------------------
+// TECLADO VIRTUAL
 let campoAtivo = null;
 
 document.querySelectorAll('#formCadastro input').forEach(input => {
@@ -167,7 +184,6 @@ function inserirTecla(char) {
     if (!campoAtivo) return;
 
     campoAtivo.focus();
-
     let start = campoAtivo.selectionStart || campoAtivo.value.length;
     let end = campoAtivo.selectionEnd || campoAtivo.value.length;
     const texto = campoAtivo.value;
@@ -194,7 +210,6 @@ document.getElementById('formCadastro').addEventListener('submit', async functio
     e.preventDefault();
 
     const formData = new FormData(this);
-
     const data = {
         nome: formData.get('nome'),
         email: formData.get('email'),
@@ -204,33 +219,24 @@ document.getElementById('formCadastro').addEventListener('submit', async functio
     const modal = document.getElementById('modalCadastro');
     modal.style.display = 'none';
 
-    if (spanPlayer) {
-        spanPlayer.textContent = data.nome;
-    }
+    if (spanPlayer) spanPlayer.textContent = data.nome;
 
-    if (typeof startTimer === 'function') {
-        startTimer();
-    }
+    if (typeof startTimer === 'function') startTimer();
 
     document.getElementById('tecladoVirtual').style.display = 'none';
     document.getElementById('tecladoNumerico').style.display = 'none';
     campoAtivo = null;
-
     this.reset();
 });
 
-// ---------------------- SALVAR NO FIREBASE ----------------------
+// FIRESTORE
 window.salvarDados = async function () {
     const nome = document.getElementById("nome").value;
     const email = document.getElementById("email").value;
     const telefone = document.getElementById("telefone").value;
 
     try {
-        await addDoc(collection(db, "usuarios"), {
-            nome,
-            email,
-            telefone
-        });
+        await addDoc(collection(db, "usuarios"), { nome, email, telefone });
         alert("Dados Salvos");
     } catch (error) {
         alert("Erro ao salvar: " + error);

@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../css/game.css" />
   <link rel="shortcut icon" href="./imagens/capa1.png" type="image/x-icon" />
 
-  <title>Jogo da Memória | Enel</title>
+  <title>Jogo da Memória | Vivo</title>
 </head>
 <body>
   <!-- Modal de Cadastro -->
@@ -85,7 +85,13 @@
     <header>
       <span>
         Tempo: <span class="timer">00</span>
-      <i  class="fa-solid fa-repeat"  style="cursor: pointer;"  id="repetir"></i>
+<i
+  class="fa-solid fa-repeat"
+  onclick="resetarJogo()"
+  style="cursor: pointer;"
+  id="repetir"
+></i>
+
       </span>
     </header>
 
@@ -94,6 +100,7 @@
 
   <script type="module" src="./firebaseKey.js"></script>
   <script src="https://kit.fontawesome.com/1877c96d5d.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../js/game.js"></script>
 </body>
 </html>
