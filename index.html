@@ -14,71 +14,86 @@
   <div id="modalCadastro" class="modal">
     <div class="modal-content">
       <h2>Cadastre-se para jogar</h2>
-      <form id="formCadastro">
-        <input type="text" name="nome" id="nome" placeholder="Seu nome e sobrenome" required />
-        <input type="email" name="email" id="email" placeholder="Seu e-mail" required />
-        <input type="text" name="telefone" id="telefone" placeholder="Seu telefone com DDD" required />
+      <form id="formCadastro"  autocomplete="off">
+        <input type="text" name="nome" id="nome" placeholder="Seu nome e sobrenome" required autocomplete="off"/>
+        <input type="email" name="email" id="email" placeholder="Seu e-mail" required autocomplete="off"/>
+        <input type="text" name="telefone" id="telefone" placeholder="Seu telefone com DDD" required autocomplete="off"/>
         <button type="submit" onClick="salvarDados()">Enviar</button>
       </form>
       
-        <div id="tecladoVirtual" class="teclado-virtual" style="display: none;">
-        <div class="teclas">
-          <!-- Linha 1 -->
-          <button onclick="inserirTecla('Q')">Q</button>
-          <button onclick="inserirTecla('W')">W</button>
-          <button onclick="inserirTecla('E')">E</button>
-          <button onclick="inserirTecla('R')">R</button>
-          <button onclick="inserirTecla('T')">T</button>
-          <button onclick="inserirTecla('Y')">Y</button>
-          <button onclick="inserirTecla('U')">U</button>
-          <button onclick="inserirTecla('I')">I</button>
-          <button onclick="inserirTecla('O')">O</button>
-          <button onclick="inserirTecla('P')">P</button>
-          <br>
-          <!-- Linha 2 -->
-          <button onclick="inserirTecla('A')">A</button>
-          <button onclick="inserirTecla('S')">S</button>
-          <button onclick="inserirTecla('D')">D</button>
-          <button onclick="inserirTecla('F')">F</button>
-          <button onclick="inserirTecla('G')">G</button>
-          <button onclick="inserirTecla('H')">H</button>
-          <button onclick="inserirTecla('J')">J</button>
-          <button onclick="inserirTecla('K')">K</button>
-          <button onclick="inserirTecla('L')">L</button>
-          <br>
-          <!-- Linha 3 -->
-          <button onclick="inserirTecla('Z')">Z</button>
-          <button onclick="inserirTecla('X')">X</button>
-          <button onclick="inserirTecla('C')">C</button>
-          <button onclick="inserirTecla('V')">V</button>
-          <button onclick="inserirTecla('B')">B</button>
-          <button onclick="inserirTecla('N')">N</button>
-          <button onclick="inserirTecla('M')">M</button>
-          <br>
-          <!-- Linha 5 -->
-          <button onclick="inserirTecla('@')">@</button>
-          <button onclick="inserirTecla('.')">.</button>
-          <button onclick="inserirTecla('-')">-</button>
-          <button onclick="inserirTecla('_')">_</button>
-          <button onclick="inserirTecla(' ')">Espaço</button>
-          <button onclick="removerTecla()">⌫</button>
-        </div>
-      </div>
-        <div id="tecladoNumerico" class="teclado-virtual" style="display: none;">
-          <div class="teclas">
-            <button onclick="inserirTecla('1')">1</button>
-            <button onclick="inserirTecla('2')">2</button>
-            <button onclick="inserirTecla('3')">3</button>
-            <button onclick="inserirTecla('4')">4</button>
-            <button onclick="inserirTecla('5')">5</button>
-            <button onclick="inserirTecla('6')">6</button>
-            <button onclick="inserirTecla('7')">7</button>
-            <button onclick="inserirTecla('8')">8</button>
-            <button onclick="inserirTecla('9')">9</button>
-            <button onclick="inserirTecla('0')">0</button>
-            <button onclick="removerTecla()">⌫</button>
-        </div>
-      </div>
+<div id="tecladoVirtual" class="teclado-virtual" style="display: none;">
+  <div class="teclas">
+    <!-- Linha 1 -->
+    <button onclick="inserirTecla('1')">1</button>
+    <button onclick="inserirTecla('2')">2</button>
+    <button onclick="inserirTecla('3')">3</button>
+    <button onclick="inserirTecla('4')">4</button>
+    <button onclick="inserirTecla('5')">5</button>
+    <button onclick="inserirTecla('6')">6</button>
+    <button onclick="inserirTecla('7')">7</button>
+    <button onclick="inserirTecla('8')">8</button>
+    <button onclick="inserirTecla('9')">9</button>
+    <button onclick="inserirTecla('0')">0</button>
+    <br>
+    <!-- Linha 2 -->
+    <button onclick="inserirTecla('Q')">Q</button>
+    <button onclick="inserirTecla('W')">W</button>
+    <button onclick="inserirTecla('E')">E</button>
+    <button onclick="inserirTecla('R')">R</button>
+    <button onclick="inserirTecla('T')">T</button>
+    <button onclick="inserirTecla('Y')">Y</button>
+    <button onclick="inserirTecla('U')">U</button>
+    <button onclick="inserirTecla('I')">I</button>
+    <button onclick="inserirTecla('O')">O</button>
+    <button onclick="inserirTecla('P')">P</button>
+    <br>
+    <!-- Linha 3 -->
+    <button onclick="inserirTecla('A')">A</button>
+    <button onclick="inserirTecla('S')">S</button>
+    <button onclick="inserirTecla('D')">D</button>
+    <button onclick="inserirTecla('F')">F</button>
+    <button onclick="inserirTecla('G')">G</button>
+    <button onclick="inserirTecla('H')">H</button>
+    <button onclick="inserirTecla('J')">J</button>
+    <button onclick="inserirTecla('K')">K</button>
+    <button onclick="inserirTecla('L')">L</button>
+    <br>
+    <!-- Linha 4 -->
+    <button onclick="inserirTecla('Z')">Z</button>
+    <button onclick="inserirTecla('X')">X</button>
+    <button onclick="inserirTecla('C')">C</button>
+    <button onclick="inserirTecla('V')">V</button>
+    <button onclick="inserirTecla('B')">B</button>
+    <button onclick="inserirTecla('N')">N</button>
+    <button onclick="inserirTecla('M')">M</button>
+    <br>
+    <!-- Linha 5 -->
+    <button onclick="inserirTecla('@')">@</button>
+    <button onclick="inserirTecla('.')">.</button>
+    <button onclick="inserirTecla('-')">-</button>
+    <button onclick="inserirTecla('_')">_</button>
+    <button onclick="inserirTecla(' ')">Espaço</button>
+    <button onclick="removerTecla()">⌫</button>
+  </div>
+</div>
+
+
+<div id="tecladoNumerico" class="teclado-virtual" style="display: none;">
+  <div class="teclas">
+    <button onclick="inserirTecla('1')">1</button>
+    <button onclick="inserirTecla('2')">2</button>
+    <button onclick="inserirTecla('3')">3</button>
+    <button onclick="inserirTecla('4')">4</button>
+    <button onclick="inserirTecla('5')">5</button>
+    <button onclick="inserirTecla('6')">6</button>
+    <button onclick="inserirTecla('7')">7</button>
+    <button onclick="inserirTecla('8')">8</button>
+    <button onclick="inserirTecla('9')">9</button>
+    <button onclick="inserirTecla('0')">0</button>
+    <button onclick="removerTecla()">⌫</button>
+  </div>
+</div>
+
     </div>
   </div>
   <main>
