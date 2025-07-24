@@ -50,15 +50,15 @@ window.salvarDados = async function () {
     const telefone = document.getElementById("telefone").value;
 
 
-    try {
-        await addDoc(collection(db, "usuarios"), {
-            nome,
-            email,
-            telefone
-        })
-        alert("Dados Salvos");
-    } catch (error) {
-        alert("Error" + error)
-    }
+    // try {
+    //     await addDoc(collection(db, "usuarios"), {
+    //         nome,
+    //         email,
+    //         telefone
+    //     })
+    //     alert("Dados Salvos");
+    // } catch (error) {
+    //     alert("Error" + error)
+    // }
 
 }
